@@ -9,7 +9,7 @@ import com.vnote.VNote.modules.user.SafeUser;
 import com.vnote.VNote.modules.user.UserResponse;
 import com.vnote.VNote.modules.validators.UserInputDTO;
 import com.vnote.VNote.repositories.UserRepository;
-import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -19,11 +19,11 @@ import java.util.UUID;
 public class UserService implements IUserService {
 
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
+//    private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
+//        this.passwordEncoder = passwordEncoder;
     }
 
 
@@ -45,11 +45,11 @@ public class UserService implements IUserService {
             throw new UserAlreadyExists("Email Already Exist!");
         });
 
-        final String encodedPassword = this.passwordEncoder.encode(userData.password);
+//        final String encodedPassword = this.passwordEncoder.encode(userData.password);
 
         UserEntity userEntity = new UserEntity();
         userEntity.setFullName(userData.fullName);
-        userEntity.setPassword(encodedPassword);
+        userEntity.setPassword(userData.password);
         userEntity.setPhoneNumber(userData.phoneNumber);
         userEntity.setEmail(userData.email);
 
